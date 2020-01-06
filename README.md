@@ -13,3 +13,9 @@ Uses Context API for global state management and Hooks for local state managemen
 ### Preview
 
 ![Login Demo](https://media.giphy.com/media/jRAIhGJj4hQ2AXOrMc/giphy.gif)
+
+###### Login
+
+![Update Data Demo](https://media.giphy.com/media/XHGj4IMzzRC18VYhCl/giphy.gif)
+
+###### Update
