@@ -81,7 +81,6 @@ export default function CompanyProfile() {
 
   return (
     <main className={classes.content}>
-      <Header />
       <Snackbar
         anchorOrigin={{
           vertical: 'bottom',
