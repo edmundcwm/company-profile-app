@@ -6,7 +6,6 @@ import Typography from '@material-ui/core/Typography';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import MenuList from '@material-ui/core/MenuList';
 import MenuItem from '@material-ui/core/MenuItem';
-import Divider from '@material-ui/core/Divider';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
@@ -37,8 +36,6 @@ const MainNav = props => {
   });
   return (
     <>
-      {/* <Avatar alt="Edmund" src={ProfileAvatar} className={classes.profileAvatar} /> */}
-      <Divider />
       <MenuList>{links}</MenuList>
     </>
   );

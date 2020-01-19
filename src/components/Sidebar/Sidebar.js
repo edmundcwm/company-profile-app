@@ -36,6 +36,7 @@ export default function Sidebar(props) {
       <div className={classes.offset} />
       <Divider />
       <Avatar alt="Edmund" src={ProfileAvatar} className={classes.profileAvatar} />
+      <Divider />
       <Navigation path={props.path} />
     </div>
   );
