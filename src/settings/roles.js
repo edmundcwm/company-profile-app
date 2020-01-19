@@ -1,5 +1,7 @@
 import CompanyProfile from '../components/CompanyProfile/CompanyProfile';
+import UserDashboard from '../components/UserDashboard/UserDashboard';
 import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
+import DashboardIcon from '@material-ui/icons/Dashboard';
 
 const roles = {
   administrator: {
@@ -20,8 +22,16 @@ const roles = {
     ]
   },
   portal_customer: {
-    homePath: '/app/company-profile',
+    homePath: '/app/dashboard',
     routes: [
+      {
+        id: 'userDashboard',
+        component: UserDashboard,
+        path: '/dashboard',
+        title: 'Dashboard',
+        icon: DashboardIcon,
+        exact: true
+      },
       {
         id: 'companyProfile',
         component: CompanyProfile,
