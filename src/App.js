@@ -18,7 +18,7 @@ function App() {
             <Route exact path="/" render={() => <Redirect to="/auth" />} />
             <Route exact path="/auth" component={Login} />
             <CompanyProfileProvider>
-              <PrivateRoute path="/app/company-profile" component={Main} />
+              <PrivateRoute path="/app/" component={Main} />
             </CompanyProfileProvider>
           </Switch>
         </div>
