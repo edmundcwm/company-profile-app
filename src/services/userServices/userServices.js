@@ -2,6 +2,15 @@ import axios from 'axios';
 import settings from '../../settings/settings';
 import Cookies from 'js-cookie';
 
+function getByEmail(cancelToken, endpoint) {
+  return axios({
+    url: settings.restRoute + endpoint + Cookies.get('user_email'),
+    method: 'get',
+    headers: { Authorization: 'Bearer ' + Cookies.get(settings.token) },
+    cancelToken
+  });
+}
+
 function getByID(cancelToken) {
   return axios({
     url: settings.restRoute + 'nerbcrmwp/v1/company-profile/' + Cookies.get('user_id'),
@@ -44,6 +53,7 @@ function uploadMedia(media) {
 }
 
 export const UserServices = {
+  getByEmail,
   getByID,
   updateByID,
   uploadMedia
