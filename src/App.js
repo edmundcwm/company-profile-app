@@ -5,6 +5,7 @@ import PrivateRoute from './hoc/PrivateRoute/PrivateRoute';
 import Cookies from 'js-cookie';
 import Main from './components/Main';
 import { CompanyProfileProvider } from './components/Context/CompanyProfileContext';
+import { OrderProvider } from './components/Context/OrderContext';
 
 function App() {
   const [isLoading, setLoading] = useState(false);
@@ -17,9 +18,11 @@ function App() {
           <Switch>
             <Route exact path="/" render={() => <Redirect to="/auth" />} />
             <Route exact path="/auth" component={Login} />
-            <CompanyProfileProvider>
-              <PrivateRoute path="/app/" component={Main} />
-            </CompanyProfileProvider>
+            <OrderProvider>
+              <CompanyProfileProvider>
+                <PrivateRoute path="/app" component={Main} />
+              </CompanyProfileProvider>
+            </OrderProvider>
           </Switch>
         </div>
       </BrowserRouter>
