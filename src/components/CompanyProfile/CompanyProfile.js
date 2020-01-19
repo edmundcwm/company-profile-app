@@ -53,10 +53,23 @@ export default function CompanyProfile() {
     ProfileFields[name].forEach(field => {
       newInputs[field.value] = '';
     });
-    console.log(newInputs);
     setInputData({
       ...inputData,
       [name]: [...inputData[name], newInputs]
+    });
+  }
+
+  // remove input row
+  function handleRemove(e, rowIndex) {
+    e.preventDefault();
+    const { name } = e.currentTarget;
+    const updatedData = inputData[name].filter((data, index) => {
+      return index !== rowIndex;
+    });
+
+    setInputData({
+      ...inputData,
+      [name]: updatedData
     });
   }
 
@@ -140,11 +153,12 @@ export default function CompanyProfile() {
         error || (
           <>
             <ProfileInfo
-              editMode={isEditMode}
-              update={handleUpdate}
-              change={handleChange}
-              add={handleAdd}
               data={inputData}
+              editMode={isEditMode}
+              add={handleAdd}
+              change={handleChange}
+              remove={handleRemove}
+              update={handleUpdate}
             />
             <Box mt={3}>
               <Button variant="contained" onClick={toggleEditMode} color="primary">
