@@ -60,6 +60,28 @@ export default function CompanyProfile() {
     });
   }
 
+  // handle input changes
+  function handleChange(e, index, fieldGroup) {
+    e.preventDefault();
+    console.log(index);
+    // ensure we are not mutating state
+    const updatedData = inputData[fieldGroup].map((data, rowIndex) => {
+      if (index === rowIndex) {
+        return {
+          ...data,
+          [e.target.name]: e.target.value
+        };
+      } else {
+        return data;
+      }
+    });
+
+    setInputData({
+      ...inputData,
+      [fieldGroup]: updatedData
+    });
+  }
+
   // handle data update
   function handleUpdate(e, data) {
     console.log('data to update', data);
@@ -122,6 +144,7 @@ export default function CompanyProfile() {
             <ProfileInfo
               editMode={isEditMode}
               update={handleUpdate}
+              change={handleChange}
               add={handleAdd}
               data={inputData}
             />
