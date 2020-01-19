@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from 'react';
-import Header from '../Header/Header';
 import { UserServices } from '../../services/userServices/userServices';
 import { CompanyProfileContext } from '../Context/CompanyProfileContext';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
@@ -8,6 +7,7 @@ import Box from '@material-ui/core/Box';
 import Snackbar from '@material-ui/core/Snackbar';
 import SnackBarContentWrapper from '../SnackBar/SnackBarContentWrapper';
 import useCompanyProfileStyles from './CompanyProfileStyles';
+import { ProfileFields } from './FieldsToDisplay';
 
 export default function CompanyProfile() {
   const classes = useCompanyProfileStyles();
@@ -16,6 +16,8 @@ export default function CompanyProfile() {
   const [isEditMode, setIsEditMode] = useState(false);
   const [snackBarOpen, setSnackBarOpen] = useState(false);
   const { profileData, setProfileData } = useContext(CompanyProfileContext);
+  //this state is used for handling input edit/add/remove
+  const [inputData, setInputData] = useState(profileData);
 
   useEffect(() => {
     UserServices.getByID()
@@ -26,6 +28,7 @@ export default function CompanyProfile() {
         } else {
           setError('No data found');
         }
+        setInputData(response.data[0]);
         setLoading(false);
       })
       .catch(err => {
