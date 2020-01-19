@@ -16,7 +16,7 @@ export default function CompanyProfile() {
   const [isEditMode, setIsEditMode] = useState(false);
   const [snackBarOpen, setSnackBarOpen] = useState(false);
   const { profileData, setProfileData } = useContext(CompanyProfileContext);
-  //this state is used for handling input edit/add/remove
+  //this state is used for handling input change/add/remove and submit
   const [inputData, setInputData] = useState(profileData);
 
   useEffect(() => {
@@ -82,11 +82,10 @@ export default function CompanyProfile() {
   }
 
   // handle data update
-  function handleUpdate(e, data) {
-    console.log('data to update', data);
+  function handleUpdate(e) {
     e.preventDefault();
     // submit updated data to backend
-    UserServices.updateByID(data)
+    UserServices.updateByID(inputData)
       .then(response => {
         if (response.status === 200) {
           setLoading(true);
