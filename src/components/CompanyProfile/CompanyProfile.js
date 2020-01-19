@@ -45,6 +45,21 @@ export default function CompanyProfile() {
     setSnackBarOpen(false);
   }
 
+  // add new row of inputs
+  function handleAdd(e) {
+    e.preventDefault();
+    const { name } = e.currentTarget;
+    let newInputs = {};
+    ProfileFields[name].forEach(field => {
+      newInputs[field.value] = '';
+    });
+    console.log(newInputs);
+    setInputData({
+      ...inputData,
+      [name]: [...inputData[name], newInputs]
+    });
+  }
+
   // handle data update
   function handleUpdate(e, data) {
     console.log('data to update', data);
@@ -104,7 +119,12 @@ export default function CompanyProfile() {
       ) : (
         error || (
           <>
-            <ProfileInfo editMode={isEditMode} update={handleUpdate} />
+            <ProfileInfo
+              editMode={isEditMode}
+              update={handleUpdate}
+              add={handleAdd}
+              data={inputData}
+            />
             <Box mt={3}>
               <Button variant="contained" onClick={toggleEditMode} color="primary">
                 {isEditMode ? 'Cancel Edit' : 'Edit Information'}
