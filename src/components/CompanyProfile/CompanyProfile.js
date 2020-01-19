@@ -61,11 +61,10 @@ export default function CompanyProfile() {
   }
 
   // handle input changes
-  function handleChange(e, index, fieldGroup) {
+  function handleChange(e, rowIndex, fieldGroup) {
     e.preventDefault();
-    console.log(index);
     // ensure we are not mutating state
-    const updatedData = inputData[fieldGroup].map((data, rowIndex) => {
+    const updatedData = inputData[fieldGroup].map((data, index) => {
       if (index === rowIndex) {
         return {
           ...data,
