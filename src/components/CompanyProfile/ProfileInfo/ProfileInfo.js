@@ -16,7 +16,14 @@ export default function ProfileInfo(props) {
         <Grid container spacing={3} alignItems="stretch">
           <Grid item xs={12} sm={12}>
             <Paper className={classes.companyProfilePaper} square>
-              <Shareholders editMode={props.editMode} update={props.update} />
+              <Shareholders
+                data={props.data.shareholders}
+                editMode={props.editMode}
+                add={props.add}
+                change={props.change}
+                remove={props.remove}
+                update={props.update}
+              />
             </Paper>
           </Grid>
         </Grid>

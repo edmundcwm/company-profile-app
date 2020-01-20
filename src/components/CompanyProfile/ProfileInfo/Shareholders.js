@@ -17,9 +17,12 @@ export default function Shareholders(props) {
       </Box>
       <Box>
         <TableOutput
-          fields={profileData[0].shareholders}
+          fields={props.data}
           fieldGroup="shareholders"
           editMode={props.editMode}
+          add={props.add}
+          change={props.change}
+          remove={props.remove}
           update={props.update}
         />
       </Box>
