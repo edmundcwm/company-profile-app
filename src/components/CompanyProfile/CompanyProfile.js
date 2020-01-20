@@ -8,9 +8,20 @@ import Snackbar from '@material-ui/core/Snackbar';
 import SnackBarContentWrapper from '../SnackBar/SnackBarContentWrapper';
 import useCompanyProfileStyles from './CompanyProfileStyles';
 import { ProfileFields } from './FieldsToDisplay';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles(theme => ({
+  marginRight: {
+    marginRight: theme.spacing(1)
+  },
+  content: {
+    flexGrow: 1,
+    padding: theme.spacing(7)
+  }
+}));
 
 export default function CompanyProfile() {
-  const classes = useCompanyProfileStyles();
+  const classes = useStyles();
   const [isLoading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [isEditMode, setIsEditMode] = useState(false);
