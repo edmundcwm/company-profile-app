@@ -13,31 +13,8 @@ import useCompanyProfileStyles from '../CompanyProfileStyles';
 export default function TableOutput(props) {
   const { profileData, setProfileData } = useContext(CompanyProfileContext);
   const { fields, fieldGroup, editMode } = props;
-  const [inputData, setInputData] = useState({
-    [fieldGroup]: [...profileData[0][fieldGroup]]
-  });
+  console.log('fields', fields);
   const classes = useCompanyProfileStyles();
-
-  // handle input changes
-  function handleChange(e, index) {
-    e.preventDefault();
-    // ensure we are not mutating state
-    const updatedData = inputData[fieldGroup].map((info, ind) => {
-      if (ind === index) {
-        return {
-          ...info,
-          [e.target.name]: e.target.value
-        };
-      } else {
-        return info;
-      }
-    });
-
-    setInputData({
-      ...inputData, // ensure that exisitng values are retained
-      [fieldGroup]: [...updatedData]
-    });
-  }
 
   //retrieve table headings
   const tableHeadings = fields.length ? (
