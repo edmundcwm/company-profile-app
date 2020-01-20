@@ -161,9 +161,23 @@ export default function CompanyProfile() {
               update={handleUpdate}
             />
             <Box mt={3}>
-              <Button variant="contained" onClick={toggleEditMode} color="primary">
-                {isEditMode ? 'Cancel Edit' : 'Edit Information'}
-              </Button>
+              {isEditMode ? (
+                <>
+                  <Button
+                    className={classes.marginRight}
+                    variant="contained"
+                    onClick={handleUpdate}
+                    color="primary"
+                  >
+                    Update
+                  </Button>
+                  <Button onClick={toggleEditMode}>Cancel Edit</Button>
+                </>
+              ) : (
+                <Button variant="contained" onClick={toggleEditMode} color="primary">
+                  Edit Information
+                </Button>
+              )}
             </Box>
           </>
         )

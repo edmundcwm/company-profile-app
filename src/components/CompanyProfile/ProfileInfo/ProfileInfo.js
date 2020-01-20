@@ -22,7 +22,17 @@ export default function ProfileInfo(props) {
                 add={props.add}
                 change={props.change}
                 remove={props.remove}
-                update={props.update}
+              />
+            </Paper>
+          </Grid>
+          <Grid item xs={6}>
+            <Paper className={classes.companyProfilePaper} square>
+              <Employees
+                data={props.data.employees}
+                editMode={props.editMode}
+                add={props.add}
+                change={props.change}
+                remove={props.remove}
               />
             </Paper>
           </Grid>

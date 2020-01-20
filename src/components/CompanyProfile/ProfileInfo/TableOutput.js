@@ -83,9 +83,6 @@ export default function TableOutput(props) {
       </Table>
       {editMode && (
         <>
-          <Button className={classes.updateBtn} onClick={props.update}>
-            Update
-          </Button>
           <Button name={fieldGroup} variant="contained" onClick={props.add}>
             Add {fieldGroup}
           </Button>

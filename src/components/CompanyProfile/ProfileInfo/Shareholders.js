@@ -23,7 +23,6 @@ export default function Shareholders(props) {
           add={props.add}
           change={props.change}
           remove={props.remove}
-          update={props.update}
         />
       </Box>
     </Box>
