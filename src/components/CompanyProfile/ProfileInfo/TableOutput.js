@@ -42,9 +42,9 @@ export default function TableOutput(props) {
         <TableCell key={dataIndex} className={`${classes.tableCell} ${classes.bdb0}`}>
           {editMode ? (
             <input
-              value={inputData[fieldGroup][fieldIndex][key]}
+              value={fields[fieldIndex][key]}
               name={key}
-              onChange={e => handleChange(e, fieldIndex)}
+              onChange={e => props.change(e, fieldIndex, fieldGroup)}
             />
           ) : (
             data[key]
@@ -64,9 +64,14 @@ export default function TableOutput(props) {
         <TableBody>{tableContent}</TableBody>
       </Table>
       {editMode && (
-        <Button className={classes.updateBtn} onClick={e => props.update(e, inputData)}>
-          Update
-        </Button>
+        <>
+          <Button className={classes.updateBtn} onClick={props.update}>
+            Update
+          </Button>
+          <Button name={fieldGroup} variant="contained" onClick={props.add}>
+            Add {fieldGroup}
+          </Button>
+        </>
       )}
     </>
   );
