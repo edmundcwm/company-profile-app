@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import { ProfileFields } from '../FieldsToDisplay';
 import Table from '@material-ui/core/Table';
@@ -6,14 +6,11 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableBody from '@material-ui/core/TableBody';
 import TableRow from '@material-ui/core/TableRow';
-import { CompanyProfileContext } from '../../Context/CompanyProfileContext';
 import Button from '@material-ui/core/Button';
 import useCompanyProfileStyles from '../CompanyProfileStyles';
 
 export default function TableOutput(props) {
-  const { profileData, setProfileData } = useContext(CompanyProfileContext);
   const { fields, fieldGroup, editMode } = props;
-  console.log('fields', fields);
   const classes = useCompanyProfileStyles();
 
   //retrieve table headings
