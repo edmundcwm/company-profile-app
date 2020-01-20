@@ -52,9 +52,27 @@ export default function TableOutput(props) {
         </TableCell>
       );
     });
-    return <TableRow key={fieldIndex}>{cells}</TableRow>;
+    return (
+      <>
+        <TableRow key={fieldIndex}>{cells}</TableRow>
+        {editMode && (
+          <TableRow>
+            <TableCell colspan={2} className={classes.bdb0}>
+              <Button
+                name={fieldGroup}
+                color="secondary"
+                size="small"
+                className={`${classes.floatRight} ${classes.mgb2}`}
+                onClick={e => props.remove(e, fieldIndex)}
+              >
+                Remove
+              </Button>
+            </TableCell>
+          </TableRow>
+        )}
+      </>
+    );
   });
-
   return (
     <>
       <Table>
