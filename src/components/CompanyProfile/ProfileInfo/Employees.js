@@ -16,6 +16,7 @@ export default function Employees(props) {
         data={singleEmployee}
         editMode={editMode}
         change={props.change}
+        remove={props.remove}
       />
     );
   });
