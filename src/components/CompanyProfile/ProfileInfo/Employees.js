@@ -1,13 +1,18 @@
-import React, { useContext } from 'react';
-import { CompanyProfileContext } from '../../Context/CompanyProfileContext';
+import React from 'react';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
-import TableOutput from './TableOutput';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import SingleEmployeeData from './SingleEmployeeData';
 import useCompanyProfileStyles from '../CompanyProfileStyles';
 
 export default function Employees(props) {
-  const { profileData, setProfileData } = useContext(CompanyProfileContext);
   const classes = useCompanyProfileStyles();
+  const { data } = props;
+  const employeeData = data.map((singleEmployee, index) => {
+    return <SingleEmployeeData data={singleEmployee} />;
+  });
+
   return (
     <Box>
       <Box px={5} py={3} className={classes.bdbGray} borderBottom={1}>
@@ -15,15 +20,10 @@ export default function Employees(props) {
           Employees
         </Typography>
       </Box>
-      <Box>
-        <TableOutput
-          fields={props.data}
-          fieldGroup="employees"
-          editMode={props.editMode}
-          add={props.add}
-          change={props.change}
-          remove={props.remove}
-        />
+      <Box p={3}>
+        <Table>
+          <TableBody>{employeeData}</TableBody>
+        </Table>
       </Box>
     </Box>
   );
