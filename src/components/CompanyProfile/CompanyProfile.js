@@ -8,6 +8,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 import SnackBarContentWrapper from '../SnackBar/SnackBarContentWrapper';
 import useCompanyProfileStyles from './CompanyProfileStyles';
 import { ProfileFields } from './FieldsToDisplay';
+import { prepareAttachments } from '../../helpers/attachments';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
@@ -108,39 +109,60 @@ export default function CompanyProfile() {
   }
 
   // handle data update
-  function handleUpdate(e) {
+  async function handleUpdate(e) {
     e.preventDefault();
-    // submit updated data to backend
-    UserServices.updateByID(inputData)
-      .then(response => {
-        if (response.status === 200) {
-          setLoading(true);
-          setIsEditMode(false);
-          //run another GET request to fetch updated data
-          UserServices.getByID()
-            .then(response => {
-              if (response.data.length) {
-                console.log(response.data);
-                //info found
-                setProfileData(response.data);
-              } else {
-                setError('No Data Fund');
-              }
-              setSnackBarOpen(true);
-              setLoading(false);
-              setError('');
-            })
-            .catch(error => {
-              setError(error.message);
-              setLoading(false);
-            });
-        }
-      })
-      .catch(error => {
-        setError(error.message);
-        console.log(error);
-        setLoading(false);
+    try {
+      const empAttachments = prepareAttachments.companyProfileDocs(inputData.employees);
+      console.log('attachments', empAttachments);
+      if (inputData.employees.length && empAttachments.length) {
+        //if there are employees and attachments
+        //submit attachments to backend
+        await UserServices.uploadMedia(empAttachments).then(response => {
+          // update inputData state and set employee contract title and link to response from API
+          response.forEach(({ data }) => {
+            let employeeID = data.caption.raw;
+            inputData.employees[employeeID].employee_contract_title = data.title.rendered;
+            inputData.employees[employeeID].employee_contract_link = data.source_url;
+          });
+        });
+      }
+      // submit updated data to backend
+      UserServices.updateByID(inputData)
+        .then(response => {
+          if (response.status === 200) {
+            setLoading(true);
+            setIsEditMode(false);
+            //run another GET request to fetch updated data
+            UserServices.getByID()
+              .then(response => {
+                if (response.data.length) {
+                  //info found
+                  setProfileData(response.data);
+                } else {
+                  setError('No Data Fund');
+                }
+                setSnackBarOpen(true);
+                setLoading(false);
+                setError('');
+              })
+              .catch(error => {
+                setError(error.message);
+                setLoading(false);
+              });
+          }
+        })
+        .catch(error => {
+          setError(error.message);
+          console.log(error);
+          setLoading(false);
+        });
+    } catch (e) {
+      console.log(e);
+      this.setState({
+        isLoading: false,
+        errorMessage: 'Attachment Upload failed. Please contact support.'
       });
+    }
   }
 
   return (
