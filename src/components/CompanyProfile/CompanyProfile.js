@@ -87,12 +87,14 @@ export default function CompanyProfile() {
   // handle input changes
   function handleChange(e, rowIndex, fieldGroup) {
     e.preventDefault();
+    const { name, value, type } = e.target;
     // ensure we are not mutating state
     const updatedData = inputData[fieldGroup].map((data, index) => {
       if (index === rowIndex) {
         return {
           ...data,
-          [e.target.name]: e.target.value
+          [name]:
+            type === 'number' ? parseFloat(value) : type === 'file' ? e.target.files[0] : value
         };
       } else {
         return data;
