@@ -2,12 +2,14 @@ const shareholders = [
   {
     label: 'Name',
     value: 'shareholder_name',
-    component: 'p'
+    component: 'p',
+    type: 'text'
   },
   {
     label: 'Percentage',
     value: 'shareholder_percentage',
-    component: 'p'
+    component: 'p',
+    type: 'number'
   }
 ];
 
