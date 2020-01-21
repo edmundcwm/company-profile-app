@@ -8,9 +8,9 @@ import useCompanyProfileStyles from '../CompanyProfileStyles';
 
 export default function Employees(props) {
   const classes = useCompanyProfileStyles();
-  const { data } = props;
+  const { data, editMode } = props;
   const employeeData = data.map((singleEmployee, index) => {
-    return <SingleEmployeeData data={singleEmployee} />;
+    return <SingleEmployeeData data={singleEmployee} editMode={editMode} change={props.change} />;
   });
 
   return (

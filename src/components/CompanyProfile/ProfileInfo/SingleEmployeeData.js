@@ -3,15 +3,36 @@ import { ProfileFields } from '../FieldsToDisplay';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import Link from '@material-ui/core/Link';
+import TextField from '@material-ui/core/TextField';
 
 export default function SingleEmployeeData(props) {
-  const { data } = props;
-  const employeeData = ProfileFields['employees'].map(field => {
+  const { data, editMode } = props;
+  const employeeData = ProfileFields['employees'].map((field, index) => {
     return (
       <TableRow>
         <TableCell>{field.label}</TableCell>
         <TableCell>
-          {'link' in field ? (
+          {editMode ? (
+            'link' in field ? (
+              <>
+                {data[field.value] && <a href={data[field.link]}>{data[field.value]}</a>}
+                <TextField
+                  type={field.type}
+                  name="employee_contract"
+                  onChange={event => props.change(event, index, 'employees')}
+                  fullWidth
+                />
+              </>
+            ) : (
+              <TextField
+                type={field.type}
+                name={field.value}
+                value={data[field.value]}
+                onChange={event => props.change(event, index, 'employees')}
+                fullWidth
+              />
+            )
+          ) : 'link' in field ? (
             <Link href={data[field.link]} target="_blank" rel="noopener">
               {data[field.value]}
             </Link>
