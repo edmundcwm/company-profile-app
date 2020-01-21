@@ -1,5 +1,6 @@
 import React from 'react';
 import Box from '@material-ui/core/Box';
+import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -14,8 +15,8 @@ export default function Employees(props) {
       <SingleEmployeeData
         rowIndex={index}
         data={singleEmployee}
-        editMode={editMode}
         change={props.change}
+        editMode={editMode}
         remove={props.remove}
       />
     );
@@ -31,6 +32,11 @@ export default function Employees(props) {
       <Box p={3}>
         <Table>
           <TableBody>{employeeData}</TableBody>
+          {editMode && (
+            <Button name="employees" onClick={props.add} variant="contained">
+              Add Employee
+            </Button>
+          )}
         </Table>
       </Box>
     </Box>
