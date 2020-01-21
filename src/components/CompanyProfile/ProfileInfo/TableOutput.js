@@ -1,6 +1,7 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import { ProfileFields } from '../FieldsToDisplay';
+import Link from '@material-ui/core/Link';
 import Table from '@material-ui/core/Table';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
@@ -36,18 +37,19 @@ export default function TableOutput(props) {
   //retrieve table content
   const tableContent = fields.map((data, fieldIndex) => {
     //for each repeating entry(row), create a table cell
-    const cells = Object.keys(data).map((key, dataIndex) => {
+    const cells = ProfileFields[fieldGroup].map((cell, index) => {
       return (
-        //use Link component is data is a link
-        <TableCell key={dataIndex} className={`${classes.tableCell} ${classes.bdb0}`}>
+        <TableCell key={index} className={`${classes.tableCell} ${classes.bdb0}`}>
           {editMode ? (
             <input
-              value={fields[fieldIndex][key]}
-              name={key}
+              value={data[cell.value]}
+              type={cell.type}
+              name={cell.value}
+              placeholder={cell.label}
               onChange={e => props.change(e, fieldIndex, fieldGroup)}
             />
           ) : (
-            data[key]
+            data[cell.value]
           )}
         </TableCell>
       );
