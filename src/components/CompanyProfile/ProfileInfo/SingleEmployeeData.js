@@ -4,6 +4,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import Link from '@material-ui/core/Link';
 import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 
 export default function SingleEmployeeData(props) {
   const { data, editMode, rowIndex } = props;
@@ -43,5 +44,20 @@ export default function SingleEmployeeData(props) {
       </TableRow>
     );
   });
-  return <TableRow>{employeeData}</TableRow>;
+  return (
+    <TableRow>
+      {employeeData}
+      {editMode && (
+        <Button
+          name="employees"
+          color="secondary"
+          size="small"
+          // className={`${classes.floatRight} ${classes.mgb2}`}
+          onClick={e => props.remove(e, rowIndex)}
+        >
+          Remove
+        </Button>
+      )}
+    </TableRow>
+  );
 }
