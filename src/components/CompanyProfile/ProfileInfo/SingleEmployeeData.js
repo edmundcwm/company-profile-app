@@ -6,7 +6,7 @@ import Link from '@material-ui/core/Link';
 import TextField from '@material-ui/core/TextField';
 
 export default function SingleEmployeeData(props) {
-  const { data, editMode } = props;
+  const { data, editMode, rowIndex } = props;
   const employeeData = ProfileFields['employees'].map((field, index) => {
     return (
       <TableRow>
@@ -19,7 +19,7 @@ export default function SingleEmployeeData(props) {
                 <TextField
                   type={field.type}
                   name="employee_contract"
-                  onChange={event => props.change(event, index, 'employees')}
+                  onChange={event => props.change(event, rowIndex, 'employees')}
                   fullWidth
                 />
               </>
@@ -28,7 +28,7 @@ export default function SingleEmployeeData(props) {
                 type={field.type}
                 name={field.value}
                 value={data[field.value]}
-                onChange={event => props.change(event, index, 'employees')}
+                onChange={event => props.change(event, rowIndex, 'employees')}
                 fullWidth
               />
             )

@@ -10,7 +10,14 @@ export default function Employees(props) {
   const classes = useCompanyProfileStyles();
   const { data, editMode } = props;
   const employeeData = data.map((singleEmployee, index) => {
-    return <SingleEmployeeData data={singleEmployee} editMode={editMode} change={props.change} />;
+    return (
+      <SingleEmployeeData
+        rowIndex={index}
+        data={singleEmployee}
+        editMode={editMode}
+        change={props.change}
+      />
+    );
   });
 
   return (
