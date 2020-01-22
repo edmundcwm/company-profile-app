@@ -13,14 +13,22 @@ Uses Context API for global state management and Hooks for local state managemen
 ### Modules
 
 ###### Login
-![Login](https://s5.gifyu.com/images/login9bc5d1f7254276b2.gif)
+![Login](demos/login.gif)
+
 
 ##### Dashboard
-![Dashboard](https://s5.gifyu.com/images/dashboard-1440.gif)
+![Dashboard](demos/dashboard.gif)
 
 The Dashboard module displays all the user's WooCommerce orders. 
 
-###### Company Profile - Add data
-![Company Profile](https://s5.gifyu.com/images/company-add239be85dad15d4f3.gif)
-
+##### Company Profile
 Company profile contains two profile sections - Shareholders and Employees. Shareholder includes information like name and percentage. Employees include information like name, email and contract(file upload).
+
+###### Company Profile - Add data
+![Company Profile Add Data](demos/company-add.gif)
+
+###### Company Profile - Edit data
+![Company Profile Edit Data](demos/company-edit.gif)
+
+###### Company Profile - Delete data
+![Company Profile Delete Data](demos/company-delete.gif)
