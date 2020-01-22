@@ -10,12 +10,17 @@ Uses Context API for global state management and Hooks for local state managemen
 
 - [NerbCRMWP Plugin](https://github.com/edmundcwm/nerbcrmwp)
 
-### Preview
-
-![Login Demo](https://media.giphy.com/media/jRAIhGJj4hQ2AXOrMc/giphy.gif)
+### Modules
 
 ###### Login
+![Login](https://s5.gifyu.com/images/login9bc5d1f7254276b2.gif)
 
-![Update Data Demo](https://media.giphy.com/media/XHGj4IMzzRC18VYhCl/giphy.gif)
+##### Dashboard
+![Dashboard](https://s5.gifyu.com/images/dashboard-1440.gif)
 
-###### Update
+The Dashboard module displays all the user's WooCommerce orders. 
+
+###### Company Profile - Add data
+![Company Profile](https://s5.gifyu.com/images/company-add239be85dad15d4f3.gif)
+
+Company profile contains two profile sections - Shareholders and Employees. Shareholder includes information like name and percentage. Employees include information like name, email and contract(file upload).
